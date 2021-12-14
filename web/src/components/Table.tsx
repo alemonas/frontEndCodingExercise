@@ -1,6 +1,6 @@
 import React from 'react'
-import {useFilters, useSortBy, useTable} from 'react-table'
-import {Container} from 'theme-ui'
+import {useFilters, useSortBy, useTable, useResizeColumns} from 'react-table'
+import {Container, Input} from 'theme-ui'
 
 function DefaultColumnFilter({
   column: {filterValue, preFilteredRows, setFilter},
@@ -8,7 +8,7 @@ function DefaultColumnFilter({
   const count = preFilteredRows.length
 
   return (
-    <input
+    <Input
       value={filterValue || ''}
       onChange={(e) => {
         setFilter(e.target.value || undefined)
@@ -35,6 +35,7 @@ function Table({columns, data}: any) {
       },
       useFilters,
       useSortBy,
+      useResizeColumns,
     )
 
   return (

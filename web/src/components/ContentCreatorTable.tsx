@@ -1,5 +1,5 @@
 import React from 'react'
-import {Badge, Box, Text} from 'theme-ui'
+import {Badge, Box, Select, Text} from 'theme-ui'
 import {getSampleItems} from 'utils/api-client'
 
 import Table from './Table'
@@ -30,7 +30,7 @@ function SelectColumnFilter({
   }, [id, preFilteredRows])
 
   return (
-    <select
+    <Select
       value={filterValue}
       onChange={(e) => {
         setFilter(e.target.value || undefined)
@@ -42,20 +42,20 @@ function SelectColumnFilter({
           {option}
         </option>
       ))}
-    </select>
+    </Select>
   )
 }
 
 function getTableColumns() {
   return [
     {
-      Header: 'FIRST NAME',
+      Header: 'FIRSTNAME',
       accessor: 'firstName',
       disableSortBy: true,
       disableFilters: true,
     },
     {
-      Header: 'LAST NAME',
+      Header: 'LASTNAME',
       accessor: 'lastName',
       disableSortBy: true,
       disableFilters: true,
@@ -71,11 +71,7 @@ function getTableColumns() {
       Header: 'TAGS',
       accessor: 'tags',
       Cell: function TagsRenderItem({value: tags}: any) {
-        return tags.map((item: any) => (
-          <Badge padding={1} mr={1}>
-            {item}
-          </Badge>
-        ))
+        return tags.map((item: any) => <Badge variant="tags">{item}</Badge>)
       },
       disableSortBy: true,
     },
