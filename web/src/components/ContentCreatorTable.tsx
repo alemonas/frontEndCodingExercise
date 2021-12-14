@@ -1,5 +1,5 @@
 import React from 'react'
-import {Badge, Box, Text} from 'theme-ui'
+import {Badge, Text} from 'theme-ui'
 import {getSampleItems} from 'utils/api-client'
 
 import Table from './Table'
@@ -24,7 +24,7 @@ function ContentCreatorTable() {
       {
         Header: 'TAGS',
         accessor: 'tags',
-        Cell: function PaidExperienceRenderItem({value: tags}: any) {
+        Cell: function TagsRenderItem({value: tags}: any) {
           return tags.map((item: any) => (
             <Badge padding={1} mr={1}>
               {item}
@@ -33,7 +33,7 @@ function ContentCreatorTable() {
         },
       },
       {
-        Header: 'PREVIOUS PAID EXPERIENCE',
+        Header: 'EXPERIENCE',
         accessor: 'previousPaidExperience',
         Cell: function PaidExperienceRenderItem({value}: any) {
           const paidExperienceEntries = Object.entries(value)
@@ -42,8 +42,21 @@ function ContentCreatorTable() {
               const [, entryValue] = entry
               return entryValue
             })
-            .map((item) => <Box>{item}</Box>)
+            .map((item) => item[0])
         },
+      },
+      {
+        Header: 'SKILL SET',
+        accessor: 'skillSet',
+        Cell: function SkillSetRenderItem({value}: any) {
+          return value.map((item: any) => {
+            return item.label
+          })
+        },
+      },
+      {
+        Header: 'YEARS OF EXPERIENCE',
+        accessor: 'yearsOfExperience',
       },
     ],
     [],
