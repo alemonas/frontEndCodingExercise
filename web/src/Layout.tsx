@@ -32,7 +32,6 @@ const Layout = (props: LayoutProps) => (
     >
       <div
         sx={{
-          maxWidth: 768,
           mx: 'auto',
           px: 3,
           variant: 'layout.container',
