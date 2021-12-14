@@ -1,6 +1,6 @@
 import {Text, ThemeProvider} from 'theme-ui'
-import Layout from './Layout'
 
+import Layout from './Layout'
 import theme from './theme'
 
 function App() {

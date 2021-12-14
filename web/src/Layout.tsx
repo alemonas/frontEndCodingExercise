@@ -15,9 +15,9 @@ const Layout = (props: LayoutProps) => (
   >
     <header
       sx={{
-        width: '100%',
-        display: 'flex',
         alignItems: 'center',
+        display: 'flex',
+        width: '100%',
         variant: 'layout.header',
       }}
     >
@@ -25,9 +25,9 @@ const Layout = (props: LayoutProps) => (
     </header>
     <main
       sx={{
-        width: '100%',
         flex: '1 1 auto',
         variant: 'layout.main',
+        width: '100%',
       }}
     >
       <div
