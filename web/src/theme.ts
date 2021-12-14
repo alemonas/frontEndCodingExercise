@@ -14,6 +14,13 @@ const theme: Theme = {
       },
     },
   },
+  badges: {
+    tags: {
+      bg: 'secondary',
+      padding: 1,
+      mr: 1,
+    },
+  },
 }
 
 export default theme
