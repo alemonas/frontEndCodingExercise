@@ -1,4 +1,4 @@
-import ContentCreatorTable from './ContentCreators'
+import ContentCreatorTable from './ContentCreatorTable'
 
 function ContentCreator() {
   return (
