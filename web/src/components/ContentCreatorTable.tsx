@@ -1,5 +1,5 @@
 import React from 'react'
-import {Badge, Text} from 'theme-ui'
+import {Badge, Box, Text} from 'theme-ui'
 import {getSampleItems} from 'utils/api-client'
 
 import Table from './Table'
@@ -51,16 +51,21 @@ function getTableColumns() {
     {
       Header: 'FIRST NAME',
       accessor: 'firstName',
+      disableSortBy: true,
+      disableFilters: true,
     },
     {
       Header: 'LAST NAME',
       accessor: 'lastName',
+      disableSortBy: true,
+      disableFilters: true,
     },
     {
       Header: 'GENDER',
       accessor: 'gender',
       Filter: SelectColumnFilter,
       filter: 'equals',
+      disableSortBy: true,
     },
     {
       Header: 'TAGS',
@@ -72,32 +77,30 @@ function getTableColumns() {
           </Badge>
         ))
       },
+      disableSortBy: true,
     },
     {
       Header: 'EXPERIENCE',
       accessor: 'previousPaidExperience',
       Cell: function PaidExperienceRenderItem({value}: any) {
-        const paidExperienceEntries = Object.entries(value)
-        return paidExperienceEntries
-          .filter((entry) => {
-            const [, entryValue] = entry
-            return entryValue
-          })
-          .map((item) => item[0])
+        return value.map((item: any) => <Box>{item}</Box>)
       },
+      disableSortBy: true,
     },
     {
       Header: 'SKILL SET',
       accessor: 'skillSet',
       Cell: function SkillSetRenderItem({value}: any) {
         return value.map((item: any) => {
-          return item.label
+          return <Box>{item}</Box>
         })
       },
+      disableSortBy: true,
     },
     {
       Header: 'YEARS OF EXPERIENCE',
       accessor: 'yearsOfExperience',
+      disableFilters: true,
     },
   ]
 }
