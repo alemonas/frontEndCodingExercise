@@ -21,6 +21,14 @@ const theme: Theme = {
       mr: 1,
     },
   },
+  forms: {
+    input: {
+      table: {
+        padding: 2,
+        bg: 'background',
+      },
+    },
+  },
 }
 
 export default theme
