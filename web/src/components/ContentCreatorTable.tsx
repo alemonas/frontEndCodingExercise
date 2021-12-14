@@ -1,111 +1,48 @@
 import React from 'react'
-import {Text} from 'theme-ui'
+import {Badge, Box, Text} from 'theme-ui'
+import {getSampleItems} from 'utils/api-client'
 
-// import {getItems} from 'utils/api-client'
 import Table from './Table'
 
 function ContentCreatorTable() {
-  // const allItems = React.useMemo(() => getItems())
-  const data = React.useMemo(
-    () => [
-      {
-        _id: '619d411b5429558b838c0eeb',
-        firstName: 'Norris',
-        lastName: 'Mcmahon',
-        imageUrl: 'https://loremflickr.com/1080/1080',
-        gender: 'male',
-        email: 'norrismcmahon@wrapture.com',
-        phone: '+1 (993) 458-2000',
-        about:
-          'Anim magna irure nulla irure eiusmod incididunt laborum aliqua non ea veniam proident ut ad.',
-        tags: [
-          'fugiat',
-          'eu',
-          'exercitation',
-          'fugiat',
-          'pariatur',
-          'eu',
-          'elit',
-        ],
-        previousPaidExperience: {
-          video: false,
-          photography: true,
-          socialPost: false,
-        },
-        skillSet: [
-          {
-            label: 'Social Posts',
-            yearsOfExperience: 8,
-          },
-          {
-            label: 'Video Creation',
-            yearsOfExperience: 5,
-          },
-        ],
-      },
-      {
-        _id: '619d411b5d8b9b79e1d82725',
-        firstName: 'Romero',
-        lastName: 'Hoover',
-        imageUrl: 'https://loremflickr.com/1080/1080',
-        gender: 'male',
-        email: 'romerohoover@wrapture.com',
-        phone: '+1 (980) 592-3858',
-        about:
-          'Labore dolore duis nostrud occaecat dolore ipsum aliquip esse officia.',
-        tags: [
-          'cupidatat',
-          'proident',
-          'nisi',
-          'mollit',
-          'commodo',
-          'occaecat',
-          'ullamco',
-        ],
-        previousPaidExperience: {
-          video: true,
-          photography: false,
-          socialPost: true,
-        },
-        skillSet: [
-          {
-            label: 'Video Creation',
-            yearsOfExperience: 0,
-          },
-          {
-            label: 'Unboxing Products',
-            yearsOfExperience: 3,
-          },
-        ],
-      },
-    ],
-    [],
-  )
+  const data = React.useMemo(() => getSampleItems(), [])
 
   const columns: any = React.useMemo(
     () => [
       {
-        Header: 'First name',
+        Header: 'FIRST NAME',
         accessor: 'firstName',
       },
       {
-        Header: 'Last name',
+        Header: 'LAST NAME',
         accessor: 'lastName',
       },
       {
-        Header: 'Gender',
+        Header: 'GENDER',
         accessor: 'gender',
       },
       {
-        Header: 'Tags',
+        Header: 'TAGS',
         accessor: 'tags',
+        Cell: function PaidExperienceRenderItem({value: tags}: any) {
+          return tags.map((item: any) => (
+            <Badge padding={1} mr={1}>
+              {item}
+            </Badge>
+          ))
+        },
       },
       {
-        Header: 'Previous Paid Experience',
+        Header: 'PREVIOUS PAID EXPERIENCE',
         accessor: 'previousPaidExperience',
-        Cell: function PreviousPaidExperienceRenderItem({value}: any) {
-          const entries = Object.entries(value)
-          return entries.map((item) => <span>{item[0]}</span>)
+        Cell: function PaidExperienceRenderItem({value}: any) {
+          const paidExperienceEntries = Object.entries(value)
+          return paidExperienceEntries
+            .filter((entry) => {
+              const [, entryValue] = entry
+              return entryValue
+            })
+            .map((item) => <Box>{item}</Box>)
         },
       },
     ],
