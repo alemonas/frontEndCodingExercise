@@ -1,11 +1,11 @@
-import { ThemeProvider } from "@theme-ui/core"
+import {Text, ThemeProvider} from 'theme-ui'
 
 import theme from './theme'
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">My App</div>
+      <Text variant="heading">My App</Text>
     </ThemeProvider>
   )
 }
