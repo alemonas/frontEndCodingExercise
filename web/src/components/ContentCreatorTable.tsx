@@ -1,3 +1,5 @@
+/** @jsxImportSource theme-ui */
+
 import React from 'react'
 import {Badge, Box, Select, Text} from 'theme-ui'
 import {getSampleItems} from 'utils/api-client'
@@ -35,6 +37,7 @@ function SelectColumnFilter({
       onChange={(e) => {
         setFilter(e.target.value || undefined)
       }}
+      sx={{width: 100}}
     >
       <option value="">All</option>
       {options.map((option: any, i: any) => (

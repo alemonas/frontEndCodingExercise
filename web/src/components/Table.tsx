@@ -1,6 +1,8 @@
+/** @jsxImportSource theme-ui */
+
 import React from 'react'
 import {useFilters, useSortBy, useTable, useResizeColumns} from 'react-table'
-import {Container, Input} from 'theme-ui'
+import {Container, Input, Text} from 'theme-ui'
 
 function DefaultColumnFilter({
   column: {filterValue, preFilteredRows, setFilter},
@@ -14,6 +16,7 @@ function DefaultColumnFilter({
         setFilter(e.target.value || undefined)
       }}
       placeholder={`Search ${count} records...`}
+      variant="input.table"
     />
   )
 }
@@ -38,15 +41,20 @@ function Table({columns, data}: any) {
       useResizeColumns,
     )
 
+  const firstPageRows = rows.slice(0, 10)
+
   return (
     <Container bg="muted">
-      <table {...getTableProps()}>
+      <table {...getTableProps()} sx={{padding: 2}}>
         <thead>
           {headerGroups.map((headerGroup: any) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column: any) => (
-                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                  {column.render('Header')}
+                <th
+                  {...column.getHeaderProps(column.getSortByToggleProps())}
+                  sx={{padding: 1}}
+                >
+                  <Text>{column.render('Header')}</Text>
                   <span>
                     {column.isSorted
                       ? column.isSortedDesc
@@ -61,7 +69,7 @@ function Table({columns, data}: any) {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {rows.map((row: any) => {
+          {firstPageRows.map((row: any) => {
             prepareRow(row)
             return (
               <tr {...row.getRowProps()}>
