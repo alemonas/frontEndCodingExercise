@@ -1,11 +1,14 @@
 import {Text, ThemeProvider} from 'theme-ui'
+import Layout from './Layout'
 
 import theme from './theme'
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Text variant="heading">My App</Text>
+      <Layout>
+        <Text>Table goes here</Text>
+      </Layout>
     </ThemeProvider>
   )
 }

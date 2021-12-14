@@ -1,4 +1,10 @@
-const Layout = (props) => (
+/** @jsxImportSource theme-ui */
+
+interface LayoutProps {
+  children: JSX.Element
+}
+
+const Layout = (props: LayoutProps) => (
   <div
     sx={{
       display: 'flex',
@@ -45,3 +51,5 @@ const Layout = (props) => (
     </footer>
   </div>
 )
+
+export default Layout
