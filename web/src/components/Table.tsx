@@ -1,5 +1,5 @@
 import React from 'react'
-import {useFilters, useGlobalFilter, useTable} from 'react-table'
+import {useFilters, useSortBy, useTable} from 'react-table'
 import {Container} from 'theme-ui'
 
 function DefaultColumnFilter({
@@ -34,7 +34,7 @@ function Table({columns, data}: any) {
         defaultColumn,
       },
       useFilters,
-      useGlobalFilter,
+      useSortBy,
     )
 
   return (
@@ -44,8 +44,15 @@ function Table({columns, data}: any) {
           {headerGroups.map((headerGroup: any) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column: any) => (
-                <th {...column.getHeaderProps()}>
+                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                   {column.render('Header')}
+                  <span>
+                    {column.isSorted
+                      ? column.isSortedDesc
+                        ? ' 🔽'
+                        : ' 🔼'
+                      : ''}
+                  </span>
                   <div>{column.canFilter ? column.render('Filter') : null}</div>
                 </th>
               ))}
