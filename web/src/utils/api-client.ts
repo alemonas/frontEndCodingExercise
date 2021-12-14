@@ -16,21 +16,34 @@ function mapData(data: any) {
     }
 
     const yearsOfExperience = skillSet ? skillSet.reduce(reducer, 0) : 0
+    const previousPaidExperienceArray = Object.entries(previousPaidExperience)
+      .filter((entry) => {
+        const [, entryValue] = entry
+        return entryValue === true
+      })
+      .map((item) => {
+        const [key] = item
+        return key
+      })
+
+    const skillSetArray = skillSet.map((item: any) => item.label)
 
     return {
       firstName,
       lastName,
       gender,
       tags,
-      previousPaidExperience,
-      skillSet,
+      previousPaidExperience: previousPaidExperienceArray,
+      skillSet: skillSetArray,
       yearsOfExperience,
     }
   })
 }
 
 export function getSampleItems() {
-  return mapData(influencersDataSample)
+  const res = mapData(influencersDataSample)
+  console.log({res})
+  return res
 }
 
 export function getAllItems() {
